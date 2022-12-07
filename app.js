@@ -15,16 +15,23 @@ let animalTypes = [];
 self.addEventListener('load', async () => {
     findBeanies();
     const response = await getAnimalTypes();
-    animalTypes = response;
+    animalTypes = response.data;
     await displayAnimalOptions();
     displayBeanies();
 });
 
 async function findBeanies(animalTypes) {
     const response = await getBeanieBabies(animalTypes);
-    beanies = response;
+    beanies = response.data;
     displayBeanies();
 }
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const animal = formData.get('animal');
+    findBeanies(animal);
+});
 
 /* Display Functions */
 function displayAnimalOptions() {
@@ -46,4 +53,4 @@ function displayBeanies() {
 
 // (don't forget to call any display functions you want to run on page load!)
 
-console.log(getAnimalTypes());
+console.log(beanies);

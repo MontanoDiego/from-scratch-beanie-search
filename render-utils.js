@@ -6,6 +6,7 @@ export function renderBaby(baby) {
     img.src = baby.image;
     img.alt = baby.title;
 
+    
 
     const h2 = document.createElement('h2');
     h2.textContent = baby.title;

@@ -7,19 +7,19 @@ const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // export async functions that fetch data
 
-export async function getBeanieBabies(animalType) {
+export async function getBeanieBabies(animal) {
     let query = client
         .from('beanie_babies')
         .select('*')
         .order('releaseDate')
         .limit(100);
 
-    if (animalType) {
-        query = query.eq('animalType', animalType);
+    if (animal) {
+        query = query.eq('animal', animal);
     }
 
     const response = await query;
-    return checkError(response);
+    return response;
 }
 
 export async function getAnimalTypes() {
@@ -27,7 +27,7 @@ export async function getAnimalTypes() {
         .from('beanie_baby_animals')
         .select('*');
 
-    return checkError(response);
+    return response;
 }
 
 
